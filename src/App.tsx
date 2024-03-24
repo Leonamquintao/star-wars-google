@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react";
 import "./App.css";
-import ListItem from "./components/ListItem";
 
 import withSWProvider, { useSWContext } from "./provider";
 import findMatchingTerm from "./utils/findMatchingTerm";
-import highlightMatchingTerms, {
-  HighlightFormatter,
-} from "./utils/highlightMatchingTerm";
+import highlightMatchingTerms, { HighlightFormatter } from "./utils/highlightMatchingTerm";
 import { SWPeopleProps } from "./hooks/useSWData";
+
+import ListItem from "./components/ListItem";
+import Footer from "./components/Footer";
 
 const formatter: HighlightFormatter = (matchedSubstring) => (
   <span style={{ fontWeight: 400, backgroundColor: "#29f1ff" }}>
@@ -29,7 +29,7 @@ function App() {
   }, [data, inputText]) as SWPeopleProps[];
 
   return (
-    <div className="main-container">
+    <div className="main-container" data-testId="app-container">
       <h2>Star Wars API </h2>
       <div className="search-area">
         <input
@@ -50,11 +50,7 @@ function App() {
           </div>
         )}
       </div>
-      <span className="component-disclaimer">
-        This project aims to serve as a test for the company Deel, if you have
-        any questions, please contact&nbsp;
-        <a href="mailto:leonamquintao@gmail.com">leonamquintao@gmail.com</a>
-      </span>
+      <Footer />
     </div>
   );
 }
